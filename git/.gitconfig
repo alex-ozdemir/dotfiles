@@ -1,0 +1,13 @@
+[alias]
+	s = status
+	ci = commit
+	co = checkout
+	sl = log --graph --format=format:'%C(bold blue)%h%C(reset) %C(green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim magenta)%an%C(reset)%C(bold yellow)%d%C(reset)' --all -n 20
+	d = diff
+	a = add
+	b = branch
+[user]
+	email = aozdemir@hmc.edu
+	name = Alex Ozdemir
+[credential]
+	username = alex-ozdemir
