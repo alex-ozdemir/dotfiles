@@ -8,8 +8,7 @@ setopt HIST_NO_STORE     # Don't save 'history' commands
 setopt HIST_IGNORE_SPACE # Don't save ' '-prefiexed commands
 
 setopt extendedglob
-bindkey -v
-bindkey '^R' history-incremental-search-backward
+bindkey -e
 
 # The following lines were added by compinstall
 
