@@ -45,6 +45,7 @@ alias v=nvim
 alias grep='grep --color=auto'
 alias copy='xclip -selection clipboard -i'
 alias paste='xclip -selection clipboard -o'
+alias capsescape='setxkbmap -option caps:escape'
 
 # Source many
 for file in $XDG_CONFIG_DIR/zsh/*; do
