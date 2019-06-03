@@ -1,3 +1,17 @@
+call plug#begin('~/.local/share/nvim/plugged')
+Plug 'Chiel92/vim-autoformat'
+Plug 'vim-scripts/a.vim'
+Plug 'autozimu/LanguageClient-neovim', {
+            \ 'branch': 'next',
+            \ 'do': 'bash install.sh',
+            \ }
+Plug 'junegunn/fzf'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+let g:deoplete#enable_at_startup = 1
+
+call plug#end()
+
+
 set mouse=a
 
 " Spaces
@@ -30,3 +44,35 @@ set stl+=%y\            " [filetype]
 "set stl+=0x%B\          " current byte (hex)
 set stl+=(%3l,%2c)\     " line and column
 set stl+=%P             " percentage
+
+" Shortcuts
+command! EV tabe $MYVIMRC
+command! SV source $MYVIMRC
+nnoremap <silent> <space> :noh<cr>:pc<cr>
+
+" Completion
+" Required for operations modifying multiple buffers like rename.
+set hidden
+
+let g:LanguageClient_serverCommands = {
+            \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+            \ 'c': ['ccls'],
+            \ 'cpp': ['ccls'],
+            \ 'objc': ['ccls'],
+            \ }
+
+" nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+" Or map each action separately
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+
+" <TAB>: completion.
+set completeopt=noinsert,menuone,noselect
+" tab to select
+" and don't hijack my enter key
+inoremap <expr><Tab> (pumvisible()?"\<C-n>":"\<Tab>")
+inoremap <expr><CR> (pumvisible()?(empty(v:completed_item)?"\<CR>\<CR>":"\<C-y>"):"\<CR>")
+
+let g:alternateExtensions_cc = "hh"
+let g:alternateExtensions_hh = "cc"
