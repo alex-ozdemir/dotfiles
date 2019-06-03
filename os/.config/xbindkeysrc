@@ -38,11 +38,11 @@
 #keystate_scrolllock= enable
 
 # Increase volume
-"amixer set Master 5%+"
+"amixer set Master 4%+"
    XF86AudioRaiseVolume
 
 # Decrease volume
-"amixer set Master 5%-"
+"amixer set Master 4%-"
    XF86AudioLowerVolume
 
 # Mute volume
