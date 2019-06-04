@@ -8,6 +8,8 @@ Plug 'autozimu/LanguageClient-neovim', {
 Plug 'junegunn/fzf'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'vito-c/jq.vim'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
 let g:deoplete#enable_at_startup = 1
 
 call plug#end()
@@ -77,3 +79,8 @@ inoremap <expr><CR> (pumvisible()?(empty(v:completed_item)?"\<CR>\<CR>":"\<C-y>"
 
 let g:alternateExtensions_cc = "hh"
 let g:alternateExtensions_hh = "cc"
+
+set conceallevel=2
+let g:vim_markdown_math = 1
+let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_new_list_item_indent = 3
