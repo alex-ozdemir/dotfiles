@@ -80,7 +80,11 @@ inoremap <expr><CR> (pumvisible()?(empty(v:completed_item)?"\<CR>\<CR>":"\<C-y>"
 let g:alternateExtensions_cc = "hh"
 let g:alternateExtensions_hh = "cc"
 
+" Vim Markdown
 set conceallevel=2
 let g:vim_markdown_math = 1
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_new_list_item_indent = 3
+
+" Don't create .netrwhist
+let g:netrw_dirhistmax = 0
