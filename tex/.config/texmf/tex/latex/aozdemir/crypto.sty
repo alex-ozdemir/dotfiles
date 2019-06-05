@@ -1,0 +1,32 @@
+% crypto chortcuts package
+%
+% (c) Alex Ozdemir
+%
+%% This program can be redistributed and/or modified under the terms
+%% of the LaTeX Project Public License Distributed from CTAN archives
+%% in directory macros/latex/base/lppl.txt.
+%
+
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{crypto}
+  [2019/06/04 v0.1 LaTeX package for cryptography]
+
+\RequirePackage{amsmath,amssymb}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+\newcommand{\X}{\ensuremath{\mathcal{X}}}
+\newcommand{\Y}{\ensuremath{\mathcal{Y}}}
+\newcommand{\K}{\ensuremath{\mathcal{K}}}
+\newcommand{\B}{\ensuremath{\mathcal{B}}}
+\newcommand{\A}{\ensuremath{\mathcal{A}}}
+
+\DeclareMathOperator{\Enc}{Enc}
+\DeclareMathOperator{\Dec}{Dec}
+\DeclareMathOperator{\Setup}{Setup}
+\DeclareMathOperator{\KeyGen}{KeyGen}
+
+\endinput
+%%
+%% End of file `crypto.sty'.
+

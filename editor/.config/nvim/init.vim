@@ -10,6 +10,8 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'vito-c/jq.vim'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
+Plug 'lervag/vimtex'
+Plug 'vim-latex/vim-latex'
 let g:deoplete#enable_at_startup = 1
 
 call plug#end()
@@ -85,6 +87,9 @@ set conceallevel=2
 let g:vim_markdown_math = 1
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_new_list_item_indent = 3
+
+" LaTeX
+let g:tex_flavor = "latex"
 
 " Don't create .netrwhist
 let g:netrw_dirhistmax = 0

@@ -4,3 +4,4 @@ export EDITOR=nvim
 export PATH="$HOME/.cargo/bin:$PATH"
 export LESSHISTFILE=$XDG_DATA_DIR/lesshist
 export R_HISTFILE=$XDG_DATA_DIR/Rhistory
+export TEXMFHOME=$XDG_CONFIG_DIR/texmf
