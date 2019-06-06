@@ -84,6 +84,7 @@ let g:alternateExtensions_hh = "cc"
 
 " Vim Markdown
 set conceallevel=2
+hi clear Conceal
 let g:vim_markdown_math = 1
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_new_list_item_indent = 3
