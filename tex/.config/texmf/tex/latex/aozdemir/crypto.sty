@@ -11,8 +11,12 @@
 \ProvidesPackage{crypto}
   [2019/06/04 v0.1 LaTeX package for cryptography]
 
-\RequirePackage{amsmath,amssymb}
+\RequirePackage{amsmath,amssymb,mathtools}
+\newcommand{\P}{\ensuremath{\mathbb{P}}}
+\newcommand{\Ex}{\ensuremath{\mathbb{E}}}
 \newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\F}{\ensuremath{\mathbb{F}}}
 \newcommand{\N}{\ensuremath{\mathbb{N}}}
 \newcommand{\C}{\ensuremath{\mathbb{C}}}
 \newcommand{\X}{\ensuremath{\mathcal{X}}}
@@ -21,10 +25,29 @@
 \newcommand{\B}{\ensuremath{\mathcal{B}}}
 \newcommand{\A}{\ensuremath{\mathcal{A}}}
 
+\newcommand{\concat}{\parallel}
+
+\newcommand{\ceil}[1]{\left\lceil {#1} \right\rceil}
+\newcommand{\floor}[1]{\left\lfloor {#1} \right\rfloor}
+
+\newcommand{\rfrom}{\xleftarrow{R}}
+\newcommand{\from}{\leftarrow}
+
+\DeclareMathOperator{\polylog}{polylog}
+\DeclareMathOperator{\poly}{poly}
+\DeclareMathOperator{\negl}{negl}
 \DeclareMathOperator{\Enc}{Enc}
 \DeclareMathOperator{\Dec}{Dec}
 \DeclareMathOperator{\Setup}{Setup}
+\DeclareMathOperator{\Publish}{Publish}
 \DeclareMathOperator{\KeyGen}{KeyGen}
+\DeclareMathOperator{\Commit}{Commit}
+\DeclareMathOperator{\Open}{Open}
+\DeclareMathOperator{\Verify}{Verify}
+\DeclareMathOperator{\Adv}{Adv}
+
+\newcommand{\vecb}[1]{\mathbf{#1}}
+\newcommand{\inner}[2]{{\left\langle #1, #2 \right\rangle}}
 
 \endinput
 %%
