@@ -7,7 +7,8 @@ setopt HIST_IGNORE_DUPS  # Ignore consecutive duplicates
 setopt HIST_NO_STORE     # Don't save 'history' commands
 setopt HIST_IGNORE_SPACE # Don't save ' '-prefiexed commands
 
-setopt extendedglob
+# confusing, right now
+#setopt extendedglob
 bindkey -e
 
 # The following lines were added by compinstall
