@@ -6,12 +6,23 @@ Plug 'autozimu/LanguageClient-neovim', {
             \ 'do': 'bash install.sh',
             \ }
 Plug 'junegunn/fzf'
+Plug 'w0rp/ale'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'vito-c/jq.vim'
 Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
+Plug 'rust-lang/rust.vim'
+
+" TeX
 Plug 'lervag/vimtex'
 Plug 'vim-latex/vim-latex'
+Plug 'KeitaNakamura/tex-conceal.vim', {'for': 'tex'} " for VimPlug
+
+" DSLs
+Plug 'plasticboy/vim-markdown'
+Plug 'vito-c/jq.vim'
+Plug 'iden3/vim-circom-syntax'
+Plug 'wizicer/vim-jison'
+Plug 'tomlion/vim-solidity'
+Plug 'vim-scripts/gnuplot.vim'
 let g:deoplete#enable_at_startup = 1
 
 call plug#end()
@@ -60,11 +71,15 @@ nnoremap <silent> <space> :noh<cr>:pc<cr>
 set hidden
 
 let g:LanguageClient_serverCommands = {
-            \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+            \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
             \ 'c': ['ccls'],
             \ 'cpp': ['ccls'],
             \ 'objc': ['ccls'],
+            \ 'python': ['pyls'],
             \ }
+let g:ale_c_build_dir_names = ['build', 'target', 'debug', 'prod']
+autocmd BufEnter *.hh ALEDisable
+autocmd BufEnter *.cc ALEDisable
 
 " nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 " Or map each action separately
@@ -84,10 +99,24 @@ let g:alternateExtensions_hh = "cc"
 
 " Vim Markdown
 set conceallevel=2
+let g:tex_conceal="abdgms"
 hi clear Conceal
 let g:vim_markdown_math = 1
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_new_list_item_indent = 3
+
+" Vimdiff
+hi DiffAdd      ctermfg=2   ctermbg=none
+hi DiffChange   ctermfg=7   ctermbg=none
+hi DiffDelete   ctermfg=9   ctermbg=none
+hi DiffText     ctermfg=11  ctermbg=none
+if &diff
+    syntax off
+endif
+
+" GNU Plot
+au! BufRead,BufNewFile *.gnuplot    set filetype=gnuplot
+
 
 " LaTeX
 let g:tex_flavor = "latex"
