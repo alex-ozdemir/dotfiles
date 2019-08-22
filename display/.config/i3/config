@@ -1,4 +1,4 @@
-# i3 config file (v4)
+
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 #
@@ -187,9 +187,16 @@ bar {
         status_command i3status
 }
 
-# Alex's customization:
+## Alex's customization:
 # Toggle workspace between monitors
 bindsym $mod+x move workspace to output left
+bindsym $mod+Shift+x move workspace to output above
+
+# Screenshots
+# Window
+bindsym Print exec scrot -u ~/Downloads/%F-%T.png
+bindsym Shift+Print exec scrot -s ~/Downloads/%F-%T.png
+bindsym $mod+Print exec scrot ~/Downloads/%F-%T.png
 
 #######################################################################
 # automatically start i3-config-wizard to offer the user to create a
