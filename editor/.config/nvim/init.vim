@@ -10,6 +10,7 @@ Plug 'w0rp/ale'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'godlygeek/tabular'
 Plug 'rust-lang/rust.vim'
+Plug 'vim-python/python-syntax'
 
 " TeX
 Plug 'lervag/vimtex'
@@ -88,10 +89,11 @@ nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 " <TAB>: completion.
-set completeopt=noinsert,menuone,noselect
+set completeopt=noinsert,menuone,noselect,preview
 " tab to select
 " and don't hijack my enter key
 inoremap <expr><Tab> (pumvisible()?"\<C-n>":"\<Tab>")
+inoremap <expr><S-Tab> (pumvisible()?"\<C-p>":"\<Tab>")
 inoremap <expr><CR> (pumvisible()?(empty(v:completed_item)?"\<CR>\<CR>":"\<C-y>"):"\<CR>")
 
 let g:alternateExtensions_cc = "hh"
@@ -117,9 +119,24 @@ endif
 " GNU Plot
 au! BufRead,BufNewFile *.gnuplot    set filetype=gnuplot
 
-
 " LaTeX
 let g:tex_flavor = "latex"
 
 " Don't create .netrwhist
 let g:netrw_dirhistmax = 0
+
+" Format with cargo-fmt so that formatting is edition aware
+let b:formatdef_rustfmt = '"rustfmt --edition 2018"'
+let g:python_highlight_all = 1
+
+" Debugging
+" Show syntax stack
+nmap <F10> :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+    if !exists("*synstack")
+        return
+    endif
+    echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
+"let g:autoformat_verbosemode=1
