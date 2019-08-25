@@ -73,11 +73,13 @@ set hidden
 
 let g:LanguageClient_serverCommands = {
             \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-            \ 'c': ['ccls'],
-            \ 'cpp': ['ccls'],
-            \ 'objc': ['ccls'],
             \ 'python': ['pyls'],
+            \ 'cpp': ['clangd'],
             \ }
+" Header problems
+"            \ 'c': ['ccls'],
+"            \ 'cpp': ['ccls'],
+"            \ 'objc': ['ccls'],
 let g:ale_c_build_dir_names = ['build', 'target', 'debug', 'prod']
 autocmd BufEnter *.hh ALEDisable
 autocmd BufEnter *.cc ALEDisable
@@ -138,5 +140,10 @@ function! <SID>SynStack()
     endif
     echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
+
+" LFSC
+" Set the filetype based on the file's extension, overriding any
+" 'filetype' that has already been set
+au BufRead,BufNewFile *.plf set filetype=lisp
 
 "let g:autoformat_verbosemode=1
