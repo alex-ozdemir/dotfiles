@@ -4,6 +4,7 @@ alias cvc4_check="$HOME/repos/LFSC/build/src/lfscc \
     $HOME/repos/CVC4/proofs/signatures/smt.plf \
     $HOME/repos/CVC4/proofs/signatures/lrat.plf \
     $HOME/repos/CVC4/proofs/signatures/drat.plf \
+    $HOME/repos/CVC4/proofs/signatures/er.plf \
     $HOME/repos/CVC4/proofs/signatures/th_base.plf \
     $HOME/repos/CVC4/proofs/signatures/th_bv.plf \
     $HOME/repos/CVC4/proofs/signatures/th_bv_bitblast.plf \
