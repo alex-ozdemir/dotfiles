@@ -190,7 +190,7 @@ bar {
 ## Alex's customization:
 # Toggle workspace between monitors
 bindsym $mod+x move workspace to output left
-bindsym $mod+Shift+x move workspace to output above
+bindsym $mod+Shift+x move workspace to output up
 
 # Screenshots
 # Window
