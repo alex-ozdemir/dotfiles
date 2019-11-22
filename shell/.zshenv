@@ -6,4 +6,6 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/Downloads/bin:$PATH"
 export LESSHISTFILE=$XDG_DATA_DIR/lesshist
 export R_HISTFILE=$XDG_DATA_DIR/Rhistory
+export NPM_CONFIG_PREFIX=$XDG_DATA_DIR/npm
+export PATH="$NPM_CONFIG_PREFIX/bin:$PATH"
 export TEXMFHOME=$XDG_CONFIG_DIR/texmf
