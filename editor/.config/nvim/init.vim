@@ -11,6 +11,7 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'godlygeek/tabular'
 Plug 'rust-lang/rust.vim'
 Plug 'vim-python/python-syntax'
+Plug 'https://framagit.org/tyreunom/coquille'
 
 " TeX
 Plug 'lervag/vimtex'
@@ -147,3 +148,7 @@ endfunc
 au BufRead,BufNewFile *.plf set filetype=lisp
 
 "let g:autoformat_verbosemode=1
+
+" Coq
+au FileType coq call coquille#FNMapping()
+
