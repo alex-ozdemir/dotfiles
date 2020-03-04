@@ -1,5 +1,5 @@
-alias lfscc="$HOME/repos/LFSC/build/src/lfscc"
-alias cvc4_check="$HOME/repos/LFSC/build/src/lfscc \
+alias lfscc="$HOME/repos/CVC4/deps/lfsc-checker/build/src/lfscc"
+alias cvc4_check="$HOME/repos/CVC4/deps/lfsc-checker/build/src/lfscc \
     $HOME/repos/CVC4/proofs/signatures/sat.plf \
     $HOME/repos/CVC4/proofs/signatures/smt.plf \
     $HOME/repos/CVC4/proofs/signatures/lrat.plf \
@@ -12,8 +12,8 @@ alias cvc4_check="$HOME/repos/LFSC/build/src/lfscc \
     $HOME/repos/CVC4/proofs/signatures/th_int.plf \
     $HOME/repos/CVC4/proofs/signatures/th_quant.plf \
     $HOME/repos/CVC4/proofs/signatures/th_real.plf \
-    $HOME/repos/CVC4/proofs/signatures/th_lra.plf"
-alias lfscc_base="$HOME/repos/LFSC/build/src/lfscc \
+    $HOME/repos/CVC4/proofs/signatures/th_lira.plf"
+alias lfscc_base="$HOME/repos/CVC4/deps/lfsc-checker/build/src/lfscc \
     $HOME/repos/CVC4/proofs/signatures/sat.plf \
     $HOME/repos/CVC4/proofs/signatures/smt.plf \
     $HOME/repos/CVC4/proofs/signatures/lrat.plf \
