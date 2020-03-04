@@ -1,13 +1,8 @@
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'Chiel92/vim-autoformat'
 Plug 'vim-scripts/a.vim'
-Plug 'autozimu/LanguageClient-neovim', {
-            \ 'branch': 'next',
-            \ 'do': 'bash install.sh',
-            \ }
 Plug 'junegunn/fzf'
-Plug 'w0rp/ale'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'godlygeek/tabular'
 Plug 'rust-lang/rust.vim'
 Plug 'vim-python/python-syntax'
@@ -25,6 +20,7 @@ Plug 'iden3/vim-circom-syntax'
 Plug 'wizicer/vim-jison'
 Plug 'tomlion/vim-solidity'
 Plug 'vim-scripts/gnuplot.vim'
+Plug 'bohlender/vim-smt2'
 let g:deoplete#enable_at_startup = 1
 
 call plug#end()
@@ -68,36 +64,13 @@ command! EV tabe $MYVIMRC
 command! SV source $MYVIMRC
 nnoremap <silent> <space> :noh<cr>:pc<cr>
 
-" Completion
-" Required for operations modifying multiple buffers like rename.
-set hidden
-
-let g:LanguageClient_serverCommands = {
-            \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-            \ 'python': ['pyls'],
-            \ 'cpp': ['clangd'],
-            \ }
-" Header problems
-"            \ 'c': ['ccls'],
-"            \ 'cpp': ['ccls'],
-"            \ 'objc': ['ccls'],
 let g:ale_c_build_dir_names = ['build', 'target', 'debug', 'prod']
-autocmd BufEnter *.hh ALEDisable
-autocmd BufEnter *.cc ALEDisable
-
-" nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-" Or map each action separately
-nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
-
-" <TAB>: completion.
-set completeopt=noinsert,menuone,noselect,preview
-" tab to select
-" and don't hijack my enter key
-inoremap <expr><Tab> (pumvisible()?"\<C-n>":"\<Tab>")
-inoremap <expr><S-Tab> (pumvisible()?"\<C-p>":"\<Tab>")
-inoremap <expr><CR> (pumvisible()?(empty(v:completed_item)?"\<CR>\<CR>":"\<C-y>"):"\<CR>")
+hi ALEWarning cterm=bold,underline gui=bold
+hi SpellBad cterm=bold,underline gui=bold,undercurl ctermfg=1 ctermbg=0
+hi SpellCap cterm=bold,underline gui=bold,undercurl ctermfg=4 ctermbg=0
+hi SpellRare cterm=bold,underline gui=bold,undercurl ctermfg=4 ctermbg=0
+hi SpellLocal cterm=bold,underline gui=bold,undercurl ctermfg=4 ctermbg=0
+hi Pmenu ctermbg=0 ctermfg=15 cterm=bold
 
 let g:alternateExtensions_cc = "hh"
 let g:alternateExtensions_hh = "cc"
