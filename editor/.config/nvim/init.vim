@@ -70,7 +70,8 @@ hi SpellBad cterm=bold,underline gui=bold,undercurl ctermfg=1 ctermbg=0
 hi SpellCap cterm=bold,underline gui=bold,undercurl ctermfg=4 ctermbg=0
 hi SpellRare cterm=bold,underline gui=bold,undercurl ctermfg=4 ctermbg=0
 hi SpellLocal cterm=bold,underline gui=bold,undercurl ctermfg=4 ctermbg=0
-hi Pmenu ctermbg=0 ctermfg=15 cterm=bold
+hi Pmenu ctermbg=0 ctermfg=7 cterm=NONE
+hi PmenuSel ctermbg=8 ctermfg=7 cterm=bold
 
 let g:alternateExtensions_cc = "hh"
 let g:alternateExtensions_hh = "cc"
