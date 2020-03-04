@@ -6,7 +6,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'godlygeek/tabular'
 Plug 'rust-lang/rust.vim'
 Plug 'vim-python/python-syntax'
-Plug 'https://framagit.org/tyreunom/coquille'
+Plug 'git@framagit.org:alex-ozdemir/coquille.git'
 
 " TeX
 Plug 'lervag/vimtex'
