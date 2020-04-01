@@ -1,0 +1,53 @@
+% semantics shortcuts package
+%
+% (c) Alex Ozdemir
+%
+%% This program can be redistributed and/or modified under the terms
+%% of the LaTeX Project Public License Distributed from CTAN archives
+%% in directory macros/latex/base/lppl.txt.
+%
+
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{aosemantics}
+  [2019/06/04 v0.1 LaTeX package for cryptography]
+
+\RequirePackage{amsmath,amssymb,amsfonts,stmaryrd,semantic,bussproofs,mathtools}
+
+\newcommand{\ZZ}{\ensuremath{\mathbb{Z}}}
+\newcommand{\NN}{\ensuremath{\mathbb{N}}}
+\newcommand{\CC}{\ensuremath{\mathbb{C}}}
+\newcommand{\lam}[2]{\ensuremath{\lambda #1.\,#2}}
+\newcommand{\lamt}[3]{\ensuremath{\lambda #1: #2.\,#3}}
+\newcommand{\bbracket}[1]{\ensuremath{{\llbracket #1 \rrbracket}}}
+\newcommand{\enc}[0]{\bbracket}
+\newcommand{\pair}[2]{\ensuremath{\langle #1, #2\rangle}}
+\newcommand{\inl}[1]{\ensuremath{\text{inl}\, #1}}
+\newcommand{\inr}[1]{\ensuremath{\text{inr}\,#1}}
+\newcommand{\union}[2]{\ensuremath{#1 \uplus #2}}
+\newcommand{\caseof}[5]{\ensuremath{\text{case}\ {#1}\ \text{of}\ \inl{#2}\mapsto {#3}\ \text{\textbar}\ \inr{#4}\mapsto {#5}}}
+\newcommand{\unpack}[4]{\ensuremath{\text{unpack}\ {#1}\ \text{as}\ \pair{#2}{#3}\ \text{in}\ #4}}
+\newcommand{\pack}[4]{\ensuremath{\text{pack}\ \pair{#1}{#2}\ \text{as}\ \exists{#3}.\,{#4}}}
+\DeclareMathOperator{\SemType}{SemType}
+\DeclareMathOperator{\fork}{fork}
+\newcommand{\typed}[3]{\ensuremath{#1 \vdash #2 : #3}}
+\newcommand{\styped}[3]{\ensuremath{#1 \vDash #2 : #3}}
+\newcommand{\ptyped}[2]{\ensuremath{#1 \vdash_P #2}}
+\newcommand{\ltyped}[2]{\ensuremath{#1 \vdash_L #2}}
+\newcommand{\bigTo}[2]{\ensuremath{#1 \Downarrow #2}}
+\newcommand{\ite}[3]{\ensuremath{\text{if }#1\text{ then }#2\text{ else }#3\text{ fi}}}
+\newcommand{\letin}[2]{\ensuremath{\text{let }#1\text{ in }#2}}
+\newcommand{\call}[1]{\text{call }#1}
+\newcommand{\alt}{\,|\,}
+\newcommand{\import}[1]{\text{import }#1}
+\newcommand{\export}[1]{\text{export }#1}
+\newcommand{\linksto}[3]{\left(#1\right) + \left(#2\right) = \left(#3\right)}
+\newcommand{\Vrel}[1]{\ensuremath{\mathcal{V}\bbracket{#1}}}
+\newcommand{\Erel}[1]{\ensuremath{\mathcal{E}\bbracket{#1}}}
+\newcommand{\Grel}[1]{\ensuremath{\mathcal{G}\bbracket{#1}}}
+\newcommand{\Drel}[1]{\ensuremath{\mathcal{D}\bbracket{#1}}}
+\DeclareMathOperator{\fold}{fold}
+\DeclareMathOperator{\unfold}{unfold}
+\DeclareMathOperator{\new}{new}
+\DeclareMathOperator{\REF}{Ref}
+\DeclareMathOperator{\guard}{guard}
+\newcommand{\inltype}{\forall\alpha.\forall\beta.\alpha\to\alpha\uplus\beta}
