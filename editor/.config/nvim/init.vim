@@ -70,8 +70,8 @@ hi SpellBad cterm=bold,underline gui=bold,undercurl ctermfg=1 ctermbg=0
 hi SpellCap cterm=bold,underline gui=bold,undercurl ctermfg=4 ctermbg=0
 hi SpellRare cterm=bold,underline gui=bold,undercurl ctermfg=4 ctermbg=0
 hi SpellLocal cterm=bold,underline gui=bold,undercurl ctermfg=4 ctermbg=0
-hi Pmenu ctermbg=0 ctermfg=7 cterm=NONE
-hi PmenuSel ctermbg=8 ctermfg=7 cterm=bold
+hi Pmenu ctermbg=8 ctermfg=15 cterm=NONE
+hi PmenuSel ctermbg=8 ctermfg=15 cterm=bold
 
 let g:alternateExtensions_cc = "hh"
 let g:alternateExtensions_hh = "cc"
@@ -104,7 +104,11 @@ let g:netrw_dirhistmax = 0
 
 " Format with cargo-fmt so that formatting is edition aware
 let b:formatdef_rustfmt = '"rustfmt --edition 2018"'
+let b:formatdef_brittany = '"brittany"'
+let g:formatters_haskell = ['brittany']
 let g:python_highlight_all = 1
+"let g:autoformat_verbosemode=1
+
 
 " Debugging
 " Show syntax stack
@@ -120,8 +124,6 @@ endfunc
 " Set the filetype based on the file's extension, overriding any
 " 'filetype' that has already been set
 au BufRead,BufNewFile *.plf set filetype=lisp
-
-"let g:autoformat_verbosemode=1
 
 " Coq
 au FileType coq call coquille#FNMapping()
