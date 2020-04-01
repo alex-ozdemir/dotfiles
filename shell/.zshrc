@@ -40,6 +40,7 @@ alias ll='exa -la'
 alias la='exa -a'
 alias l='exa -F'
 alias ls='exa -h'
+alias time='/usr/bin/time'
 alias g=git
 alias c=cargo
 alias v=nvim
@@ -47,6 +48,7 @@ alias grep='grep --color=auto'
 alias copy='xclip -selection clipboard -i'
 alias paste='xclip -selection clipboard -o'
 alias capsescape='setxkbmap -option caps:escape'
+alias soften_input='pacmd load-module module-echo-cancel aec_method=webrtc source_master=alsa_input.pci-0000_00_1f.3.analog-stereo'
 
 # Source many
 for file in $XDG_CONFIG_DIR/zsh/*; do
