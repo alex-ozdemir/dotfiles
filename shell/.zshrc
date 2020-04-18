@@ -9,7 +9,6 @@ setopt HIST_IGNORE_SPACE # Don't save ' '-prefiexed commands
 
 # confusing, right now
 #setopt extendedglob
-bindkey -e
 
 # The following lines were added by compinstall
 
@@ -48,7 +47,7 @@ alias grep='grep --color=auto'
 alias copy='xclip -selection clipboard -i'
 alias paste='xclip -selection clipboard -o'
 alias capsescape='setxkbmap -option caps:escape'
-alias soften_input='pacmd load-module module-echo-cancel aec_method=webrtc source_master=alsa_input.pci-0000_00_1f.3.analog-stereo'
+alias soften_input='pacmd load-module module-echo-cancel aec_method=webrtc'
 
 # Source many
 for file in $XDG_CONFIG_DIR/zsh/*; do
