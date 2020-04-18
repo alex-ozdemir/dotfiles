@@ -62,6 +62,7 @@ set stl+=%P             " percentage
 " Shortcuts
 command! EV tabe $MYVIMRC
 command! SV source $MYVIMRC
+command! C set cursorline cursorcolumn
 nnoremap <silent> <space> :noh<cr>:pc<cr>
 
 let g:ale_c_build_dir_names = ['build', 'target', 'debug', 'prod']
@@ -104,8 +105,8 @@ let g:netrw_dirhistmax = 0
 
 " Format with cargo-fmt so that formatting is edition aware
 let b:formatdef_rustfmt = '"rustfmt --edition 2018"'
-let b:formatdef_brittany = '"brittany"'
-let g:formatters_haskell = ['brittany']
+let g:formatdef_brittany_hs = '"brittany"'
+let g:formatters_haskell = ['brittany_hs']
 let g:python_highlight_all = 1
 "let g:autoformat_verbosemode=1
 
