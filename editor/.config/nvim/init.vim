@@ -21,6 +21,7 @@ Plug 'wizicer/vim-jison'
 Plug 'tomlion/vim-solidity'
 Plug 'vim-scripts/gnuplot.vim'
 Plug 'bohlender/vim-smt2'
+Plug 'petRUShka/vim-sage'
 let g:deoplete#enable_at_startup = 1
 
 call plug#end()
@@ -107,9 +108,12 @@ let g:netrw_dirhistmax = 0
 let b:formatdef_rustfmt = '"rustfmt --edition 2018"'
 let g:formatdef_brittany_hs = '"brittany"'
 let g:formatters_haskell = ['brittany_hs']
+let g:formatters_python = ['black']
 let g:python_highlight_all = 1
 "let g:autoformat_verbosemode=1
-
+let g:autoformat_autoindent = 0
+let g:autoformat_retab = 0
+let g:autoformat_remove_trailing_spaces = 0
 
 " Debugging
 " Show syntax stack
