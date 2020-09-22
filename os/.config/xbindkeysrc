@@ -50,11 +50,11 @@
    XF86AudioMute
 
 # Increase backlight
-"xbacklight -inc 10"
+"xbacklight -inc 5"
    XF86MonBrightnessUp
 
 # Decrease backlight
-"xbacklight -dec 10"
+"xbacklight -dec 5"
    XF86MonBrightnessDown
 
 #"xterm -geom 50x20+20+20"
