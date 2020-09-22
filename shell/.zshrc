@@ -54,3 +54,4 @@ for file in $XDG_CONFIG_DIR/zsh/*; do
     source "$file"
 done
 
+export PYTHONPATH="$PYTHONPATH:$HOME/repos/gg/tools/pygg/"
