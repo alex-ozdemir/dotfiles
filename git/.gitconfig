@@ -14,3 +14,5 @@
 [diff]
 	colorMoved = zebra
 	colorMovedWs = ignore-space-change
+[pull]
+	ff = only
