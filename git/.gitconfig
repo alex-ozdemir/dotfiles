@@ -11,3 +11,5 @@
 	name = Alex Ozdemir
 [credential]
 	username = alex-ozdemir
+[pull]
+	ff = only
