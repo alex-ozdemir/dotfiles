@@ -11,3 +11,6 @@
 	name = Alex Ozdemir
 [credential]
 	username = alex-ozdemir
+[diff]
+	colorMoved = zebra
+	colorMovedWs = ignore-space-change
