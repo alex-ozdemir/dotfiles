@@ -35,5 +35,7 @@ fi
 #xclock -geometry 50x50-1+1 &
 setxkbmap -option caps:escape
 nm-applet &
+# suggested by matthias
+#xcompmgr -c -t-5 -l-5 -r4.2 -o.55 &
 xbindkeys -f $XDG_CONFIG_DIR/xbindkeysrc
 exec i3
