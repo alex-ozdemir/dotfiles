@@ -459,10 +459,10 @@ key_bindings:
   - { key: C,        mods: Control|Alt, action: Copy             }
   #- { key: Insert,   mods: Shift,         action: PasteSelection   }
   - { key: Equals,   mods: Control,       action: ResetFontSize }
-  - { key: Add,      mods: Control,       action: ResetFontSize }
+  - { key: Plus,     mods: Control,       action: ResetFontSize }
   - { key: Equals,   mods: Control|Shift, action: IncreaseFontSize }
-  - { key: Add,      mods: Control|Shift, action: IncreaseFontSize }
-  - { key: Subtract, mods: Control,       action: DecreaseFontSize }
+  - { key: Plus,     mods: Control|Shift, action: IncreaseFontSize }
+  - { key: Minus,    mods: Control,       action: DecreaseFontSize }
   - { key: Minus,    mods: Control,       action: DecreaseFontSize }
 
   # (macOS only)
