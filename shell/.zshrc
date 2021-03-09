@@ -25,9 +25,11 @@ autoload -Uz compinit
 compinit -d ~/.local/share/compdump
 # End of lines added by compinstall
 
+RUNTIME_DIR=$([ -z $XDG_RUNTIME_DIR ] && echo /tmp || echo $XDG_RUNTIME_DIR)
+
 # Implementation of "same working directory"
-[[ -f "${XDG_RUNTIME_DIR}/cwd" ]] && cd "$(< ${XDG_RUNTIME_DIR}/cwd)"
-precmd() { pwd > "${XDG_RUNTIME_DIR}/cwd" }
+[[ -f "${RUNTIME_DIR}/cwd" ]] && cd "$(< ${RUNTIME_DIR}/cwd)"
+precmd() { pwd > "${RUNTIME_DIR}/cwd" }
 
 # Set up the prompt
 autoload -U colors
