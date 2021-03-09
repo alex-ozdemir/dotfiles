@@ -105,7 +105,7 @@ let g:tex_flavor = "latex"
 let g:netrw_dirhistmax = 0
 
 " Format with cargo-fmt so that formatting is edition aware
-let b:formatdef_rustfmt = '"rustfmt --edition 2018"'
+let g:formatdef_rustfmt = '"rustfmt --edition 2018"'
 let g:formatdef_brittany_hs = '"brittany"'
 let g:formatters_haskell = ['brittany_hs']
 let g:formatters_python = ['black']
