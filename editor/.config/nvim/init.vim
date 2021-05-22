@@ -162,7 +162,7 @@ if executable('texlab')
         \   'whitelist': ['tex'],
         \ })
 else
-    throw 'Missing rust-analyzer'
+    throw 'Missing Texlab'
 endif
 
 "let g:asyncomplete_log_file = "./autocomplete.log"
