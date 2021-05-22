@@ -14,5 +14,8 @@
 [diff]
 	colorMoved = zebra
 	colorMovedWs = ignore-space-change
+	algorithm = histogram
 [pull]
 	ff = only
+[init]
+	defaultBranch = main
