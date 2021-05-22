@@ -2,11 +2,16 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'Chiel92/vim-autoformat'
 Plug 'vim-scripts/a.vim'
 Plug 'junegunn/fzf'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'godlygeek/tabular'
 Plug 'rust-lang/rust.vim'
 Plug 'vim-python/python-syntax'
-Plug 'git@framagit.org:alex-ozdemir/coquille.git'
+
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'prabirshrestha/asyncomplete-file.vim'
+Plug 'yami-beta/asyncomplete-omni.vim'
+"Plug 'prabirshrestha/asyncomplete-buffer.vim'
 
 " TeX
 Plug 'lervag/vimtex'
@@ -22,10 +27,8 @@ Plug 'tomlion/vim-solidity'
 Plug 'vim-scripts/gnuplot.vim'
 Plug 'bohlender/vim-smt2'
 Plug 'petRUShka/vim-sage'
-let g:deoplete#enable_at_startup = 1
 
 call plug#end()
-
 
 set mouse=a
 
@@ -43,7 +46,7 @@ set scrolloff=5
 set hlsearch
 
 hi Search cterm=NONE ctermfg=grey ctermbg=lightblue
-nnoremap <space> :noh<cr>:pc<cr>
+"nnoremap <space> :noh<cr>:pc<cr>
 
 " Highlight whitespace
 set list
@@ -130,6 +133,76 @@ endfunc
 " 'filetype' that has already been set
 au BufRead,BufNewFile *.plf set filetype=lisp
 
-" Coq
-au FileType coq call coquille#FNMapping()
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+if executable('pylsp')
+    " pip install python-language-server
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pylsp',
+        \ 'cmd': {server_info->['pylsp']},
+        \ 'allowlist': ['python'],
+        \ })
+else
+    throw 'Missing pyls'
+endif
+if executable('rust-analyzer')
+  au User lsp_setup call lsp#register_server({
+        \   'name': 'Rust Language Server',
+        \   'cmd': {server_info->['rust-analyzer']},
+        \   'whitelist': ['rust'],
+        \ })
+else
+    throw 'Missing rust-analyzer'
+endif
+if executable('texlab')
+  au User lsp_setup call lsp#register_server({
+        \   'name': 'TexLab Language Server',
+        \   'cmd': {server_info->['texlab']},
+        \   'whitelist': ['tex'],
+        \ })
+else
+    throw 'Missing rust-analyzer'
+endif
 
+"let g:asyncomplete_log_file = "./autocomplete.log"
+
+au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
+    \ 'name': 'file',
+    \ 'allowlist': ['*'],
+    \ 'priority': 10,
+    \ 'completor': function('asyncomplete#sources#file#completor')
+    \ }))
+
+function! s:on_lsp_buffer_enabled() abort
+    echom "LSP enabled"
+    setlocal omnifunc=lsp#complete
+    setlocal signcolumn=yes
+    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+    nmap <buffer> gd <plug>(lsp-definition)
+    nmap <buffer> gs <plug>(lsp-document-symbol-search)
+    nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
+    nmap <buffer> gr <plug>(lsp-references)
+    nmap <buffer> gi <plug>(lsp-implementation)
+    "nmap <buffer> gt <plug>(lsp-type-definition)
+    nmap <buffer> <leader>rn <plug>(lsp-rename)
+    nmap <buffer> [g <plug>(lsp-previous-diagnostic)
+    nmap <buffer> ]g <plug>(lsp-next-diagnostic)
+    nmap <buffer> K <plug>(lsp-hover)
+    inoremap <buffer> <expr><c-f> lsp#scroll(+4)
+    inoremap <buffer> <expr><c-d> lsp#scroll(-4)
+
+    let g:lsp_document_highlight_enabled = 0
+
+    let g:lsp_format_sync_timeout = 1000
+    " autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
+    " refer to doc to add more commands
+endfunction
+
+nnoremap U :syntax sync fromstart<cr>
+
+augroup lsp_install
+    au!
+    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
+    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
