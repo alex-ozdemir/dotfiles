@@ -57,3 +57,5 @@ for file in $XDG_CONFIG_DIR/zsh/*; do
 done
 
 export PYTHONPATH="$PYTHONPATH:$HOME/repos/gg/tools/pygg/"
+export PATH=$PATH:$HOME/.zokrates/bin
+export ZOKRATES_HOME=$HOME/.zokrates/stdlib
