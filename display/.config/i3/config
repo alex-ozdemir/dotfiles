@@ -28,6 +28,8 @@ exec --no-startup-id /usr/lib/geoclue-2.0/demos/agent
 
 exec --no-startup-id redshift-gtk
 
+exec --no-startup-id pasystray
+
 # use these keys for focus, movement, and resize directions when reaching for
 # the arrows is not convenient
 set $up l
