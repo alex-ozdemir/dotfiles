@@ -27,6 +27,8 @@ Plug 'tomlion/vim-solidity'
 Plug 'vim-scripts/gnuplot.vim'
 Plug 'bohlender/vim-smt2'
 Plug 'petRUShka/vim-sage'
+Plug 'chrisbra/vim-diff-enhanced'
+
 
 call plug#end()
 
@@ -67,7 +69,7 @@ set stl+=%P             " percentage
 command! EV tabe $MYVIMRC
 command! SV source $MYVIMRC
 command! C set cursorline cursorcolumn
-nnoremap <silent> <space> :noh<cr>:pc<cr>
+nnoremap <silent> <space> :noh<cr>
 
 let g:ale_c_build_dir_names = ['build', 'target', 'debug', 'prod']
 hi ALEWarning cterm=bold,underline gui=bold
@@ -136,6 +138,7 @@ au BufRead,BufNewFile *.plf set filetype=lisp
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+
 if executable('pylsp')
     " pip install python-language-server
     au User lsp_setup call lsp#register_server({
@@ -148,7 +151,7 @@ else
 endif
 if executable('rust-analyzer')
   au User lsp_setup call lsp#register_server({
-        \   'name': 'Rust Language Server',
+        \   'name': 'Rust Analyzer',
         \   'cmd': {server_info->['rust-analyzer']},
         \   'whitelist': ['rust'],
         \ })
