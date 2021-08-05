@@ -6,12 +6,14 @@ Plug 'godlygeek/tabular'
 Plug 'rust-lang/rust.vim'
 Plug 'vim-python/python-syntax'
 
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'prabirshrestha/asyncomplete-file.vim'
-Plug 'yami-beta/asyncomplete-omni.vim'
+" Plug 'prabirshrestha/asyncomplete.vim'
+" Plug 'prabirshrestha/vim-lsp'
+" Plug 'prabirshrestha/asyncomplete-lsp.vim'
+" Plug 'prabirshrestha/asyncomplete-file.vim'
+" Plug 'yami-beta/asyncomplete-omni.vim'
 "Plug 'prabirshrestha/asyncomplete-buffer.vim'
+Plug 'hrsh7th/nvim-compe'
+Plug 'neovim/nvim-lspconfig'
 
 " TeX
 Plug 'lervag/vimtex'
@@ -20,14 +22,8 @@ Plug 'KeitaNakamura/tex-conceal.vim', {'for': 'tex'} " for VimPlug
 
 " DSLs
 Plug 'plasticboy/vim-markdown'
-Plug 'vito-c/jq.vim'
-Plug 'iden3/vim-circom-syntax'
-Plug 'wizicer/vim-jison'
-Plug 'tomlion/vim-solidity'
-Plug 'vim-scripts/gnuplot.vim'
 Plug 'bohlender/vim-smt2'
 Plug 'petRUShka/vim-sage'
-Plug 'chrisbra/vim-diff-enhanced'
 
 
 call plug#end()
@@ -135,77 +131,179 @@ endfunc
 " 'filetype' that has already been set
 au BufRead,BufNewFile *.plf set filetype=lisp
 
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
-
-if executable('pylsp')
-    " pip install python-language-server
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'pylsp',
-        \ 'cmd': {server_info->['pylsp']},
-        \ 'allowlist': ['python'],
-        \ })
-else
-    throw 'Missing pyls'
-endif
-if executable('rust-analyzer')
-  au User lsp_setup call lsp#register_server({
-        \   'name': 'Rust Analyzer',
-        \   'cmd': {server_info->['rust-analyzer']},
-        \   'whitelist': ['rust'],
-        \ })
-else
-    throw 'Missing rust-analyzer'
-endif
-if executable('texlab')
-  au User lsp_setup call lsp#register_server({
-        \   'name': 'TexLab Language Server',
-        \   'cmd': {server_info->['texlab']},
-        \   'whitelist': ['tex'],
-        \ })
-else
-    throw 'Missing Texlab'
-endif
-
-"let g:asyncomplete_log_file = "./autocomplete.log"
-
-au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
-    \ 'name': 'file',
-    \ 'allowlist': ['*'],
-    \ 'priority': 10,
-    \ 'completor': function('asyncomplete#sources#file#completor')
-    \ }))
-
-function! s:on_lsp_buffer_enabled() abort
-    echom "LSP enabled"
-    setlocal omnifunc=lsp#complete
-    setlocal signcolumn=yes
-    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
-    nmap <buffer> gd <plug>(lsp-definition)
-    nmap <buffer> gs <plug>(lsp-document-symbol-search)
-    nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
-    nmap <buffer> gr <plug>(lsp-references)
-    nmap <buffer> gi <plug>(lsp-implementation)
-    "nmap <buffer> gt <plug>(lsp-type-definition)
-    nmap <buffer> <leader>rn <plug>(lsp-rename)
-    nmap <buffer> [g <plug>(lsp-previous-diagnostic)
-    nmap <buffer> ]g <plug>(lsp-next-diagnostic)
-    nmap <buffer> K <plug>(lsp-hover)
-    inoremap <buffer> <expr><c-f> lsp#scroll(+4)
-    inoremap <buffer> <expr><c-d> lsp#scroll(-4)
-
-    let g:lsp_document_highlight_enabled = 0
-
-    let g:lsp_format_sync_timeout = 1000
-    " autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
-    " refer to doc to add more commands
-endfunction
+" inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+" 
+" if executable('pylsp')
+"     " pip install python-language-server
+"     au User lsp_setup call lsp#register_server({
+"         \ 'name': 'pylsp',
+"         \ 'cmd': {server_info->['pylsp']},
+"         \ 'allowlist': ['python'],
+"         \ })
+" else
+"     throw 'Missing pyls'
+" endif
+" if executable('rust-analyzer')
+"   au User lsp_setup call lsp#register_server({
+"         \   'name': 'Rust Analyzer',
+"         \   'cmd': {server_info->['rust-analyzer']},
+"         \   'whitelist': ['rust'],
+"         \   'initialization_options': { 'completion': {'detailedLabel': v:false}},
+"         \   'gook': { 'completion': {'detailedLabel': v:false}}
+"         \ })
+" else
+"     throw 'Missing rust-analyzer'
+" endif
+" if executable('texlab')
+"   au User lsp_setup call lsp#register_server({
+"         \   'name': 'TexLab Language Server',
+"         \   'cmd': {server_info->['texlab']},
+"         \   'whitelist': ['tex'],
+"         \ })
+" else
+"     throw 'Missing Texlab'
+" endif
+" if executable('ccls')
+"   au User lsp_setup call lsp#register_server({
+"         \   'name': 'CC Language Server',
+"         \   'cmd': {server_info->['ccls']},
+"         \   'whitelist': ['cpp', 'c'],
+"         \ })
+" else
+"     throw 'Missing ccls'
+" endif
+" if executable('haskell-language-server-wrapper')
+"   au User lsp_setup call lsp#register_server({
+"         \   'name': 'HS-LS',
+"         \   'cmd': {server_info->['haskell-language-server-wrapper']},
+"         \   'root_uri':{server_info->lsp#utils#path_to_uri(
+"         \    lsp#utils#find_nearest_parent_file_directory(
+"         \      lsp#utils#get_buffer_path(),
+"         \      ['hie.yaml', 'stack.yaml', '.git/']
+"         \    ))},
+"         \   'whitelist': ['haskell'],
+"         \ })
+" else
+"     throw 'Missing haskell-language-server-wrapper'
+" endif
+" if executable('bash-language-server')
+"   au User lsp_setup call lsp#register_server({
+"         \ 'name': 'bash-language-server',
+"         \ 'cmd': {server_info->[&shell, &shellcmdflag, 'bash-language-server start']},
+"         \ 'allowlist': ['sh', 'zsh'],
+"         \ })
+" endif
+" 
+" "let g:asyncomplete_log_file = "./autocomplete.log"
+" 
+" au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
+"     \ 'name': 'file',
+"     \ 'allowlist': ['*'],
+"     \ 'priority': 10,
+"     \ 'completor': function('asyncomplete#sources#file#completor')
+"     \ }))
+" 
+" function! s:on_lsp_buffer_enabled() abort
+"     echom "LSP enabled"
+"     setlocal omnifunc=lsp#complete
+"     setlocal signcolumn=yes
+"     if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+"     nmap <buffer> gd <plug>(lsp-definition)
+"     nmap <buffer> gs <plug>(lsp-document-symbol-search)
+"     nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
+"     nmap <buffer> gr <plug>(lsp-references)
+"     nmap <buffer> gi <plug>(lsp-implementation)
+"     "nmap <buffer> gt <plug>(lsp-type-definition)
+"     nmap <buffer> <leader>rn <plug>(lsp-rename)
+"     nmap <buffer> [g <plug>(lsp-previous-diagnostic)
+"     nmap <buffer> ]g <plug>(lsp-next-diagnostic)
+"     nmap <buffer> K <plug>(lsp-hover)
+"     inoremap <buffer> <expr><c-f> lsp#scroll(+4)
+"     inoremap <buffer> <expr><c-d> lsp#scroll(-4)
+" 
+"     let g:lsp_document_highlight_enabled = 0
+" 
+"     let g:lsp_format_sync_timeout = 1000
+"     " autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
+"     " refer to doc to add more commands
+" endfunction
+" augroup lsp_install
+"     au!
+"     " call s:on_lsp_buffer_enabled only for languages that has the server registered.
+"     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+" augroup END
 
 nnoremap U :syntax sync fromstart<cr>
 
-augroup lsp_install
-    au!
-    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
-    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
-augroup END
+
+" builtin lsp
+lua << EOF
+-- Compe setup
+require'compe'.setup {
+  enabled = true;
+  autocomplete = true;
+  debug = false;
+  min_length = 1;
+  preselect = 'enable';
+  throttle_time = 80;
+  source_timeout = 200;
+  incomplete_delay = 400;
+  max_abbr_width = 100;
+  max_kind_width = 100;
+  max_menu_width = 100;
+  documentation = true;
+
+  source = {
+    path = true;
+    nvim_lsp = true;
+  };
+}
+
+local t = function(str)
+  return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+
+local check_back_space = function()
+    local col = vim.fn.col('.') - 1
+    if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
+        return true
+    else
+        return false
+    end
+end
+
+-- Use (s-)tab to:
+--- move to prev/next item in completion menuone
+--- jump to prev/next snippet's placeholder
+_G.tab_complete = function()
+  if vim.fn.pumvisible() == 1 then
+    return t "<C-n>"
+  elseif check_back_space() then
+    return t "<Tab>"
+  else
+    return vim.fn['compe#complete']()
+  end
+end
+_G.s_tab_complete = function()
+  if vim.fn.pumvisible() == 1 then
+    return t "<C-p>"
+  else
+    return t "<S-Tab>"
+  end
+end
+
+vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+
+--This line is important for auto-import
+vim.api.nvim_set_keymap('i', '<cr>', 'compe#confirm("<cr>")', { expr = true })
+vim.api.nvim_set_keymap('i', '<c-space>', 'compe#complete()', { expr = true })
+require'lspconfig'.rust_analyzer.setup{}
+require'lspconfig'.texlab.setup{}
+require'lspconfig'.pylsp.setup{}
+EOF
+
