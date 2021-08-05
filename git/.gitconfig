@@ -15,9 +15,12 @@
 	colorMoved = zebra
 	colorMovedWs = ignore-space-change
 	algorithm = histogram
-[merge]
-	diff-algorithm = histogram
 [pull]
 	ff = only
+[merge]
+	tool = vimdiff
+	diff-algorithm = patience
+	strategy = recursive
+	args = patience
 [init]
 	defaultBranch = main
