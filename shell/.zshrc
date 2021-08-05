@@ -34,7 +34,7 @@ precmd() { pwd > "${RUNTIME_DIR}/cwd" }
 # Set up the prompt
 autoload -U colors
 # user @ host, cwd, are you SU?, optional red error code
-PROMPT="%F{red}%n%f@%F{cyan}%m%f %F{green}%0~%f %(!.!!.$) %(?..%B%F{red}[%?]%f%b )"
+PROMPT="%F{red}%n%f@%F{cyan}%m%f $MAHIMAHI_SHELL_PREFIX%F{green}%0~%f %(!.!!.$) %(?..%B%F{red}[%?]%f%b )"
 
 # Aliases
 alias ll='exa -la'
