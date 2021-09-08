@@ -9,8 +9,12 @@
 [user]
 	email = aozdemir@hmc.edu
 	name = Alex Ozdemir
-[credential]
-	username = alex-ozdemir
+[credential "github.com"]
+        username = alex-ozdemir
+        helper = "cache"
+[credential "git.overleaf.com"]
+        username = aozdemir@stanford.edu
+        helper = "store"
 [diff]
 	colorMoved = zebra
 	colorMovedWs = ignore-space-change
