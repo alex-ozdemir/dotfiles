@@ -98,6 +98,7 @@ endif
 
 " GNU Plot
 au! BufRead,BufNewFile *.gnuplot    set filetype=gnuplot
+au! BufRead,BufNewFile *.pl         set filetype=prolog
 
 " LaTeX
 let g:tex_flavor = "latex"
