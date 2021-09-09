@@ -1,3 +1,4 @@
 function fzo {
-    xdg-open $(fd '' ~/resources ~/repos ~/personal ~/stanford | fzf)
+    f=$(fd '' ~/resources ~/repos ~/personal ~/stanford | fzf)
+    xdg-open $f &
 }

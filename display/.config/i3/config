@@ -204,6 +204,7 @@ bindsym $mod+l exec i3lock -e -c 000000
 bindsym $mod+t exec zathura ~/resources/manuals/pgfmanual.pdf
 bindsym $mod+c exec zathura ~/resources/crypto/bs-17.pdf
 bindsym $mod+Shift+s exec zathura ~/resources/manuals/n3797.pdf
+bindsym $mod+o exec alacritty -e zsh -i -c fzo
 bindsym $mod+m exec spotify
 bindsym $mod+f exec firefox
 
