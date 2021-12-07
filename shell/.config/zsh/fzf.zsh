@@ -1,4 +1,9 @@
 function fzo {
-    f=$(fd '' ~/resources ~/repos ~/personal ~/stanford | fzf)
+    if [ $# -gt 0 ]
+    then
+        f=$(fd '' $@ | fzf)
+    else
+        f=$(fd '' ~/resources ~/repos ~/personal ~/stanford | fzf)
+    fi
     xdg-open $f &
 }
