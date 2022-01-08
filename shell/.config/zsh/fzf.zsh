@@ -1,9 +1,9 @@
 function fzo {
+    directories=(~/resources ~/repos ~/personal ~/stanford)
     if [ $# -gt 0 ]
     then
-        f=$(fd '' $@ | fzf)
+        f=$({fd '' $@; fd -I '.*.pdf' $@} | fzf)
     else
-        f=$(fd '' ~/resources ~/repos ~/personal ~/stanford | fzf)
-    fi
-    xdg-open $f &
+        f=$({fd '' $directories; fd -I '.*.pdf' $directories} | fzf)
+    fi && xdg-open $f &
 }
