@@ -336,9 +336,10 @@ end
 --This line is important for auto-import
 vim.api.nvim_set_keymap('i', '<cr>', 'compe#confirm("<cr>")', { expr = true })
 vim.api.nvim_set_keymap('i', '<c-space>', 'compe#complete()', { expr = true })
+
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'pylsp', 'texlab', 'rust_analyzer' }
+local servers = { 'pylsp', 'rust_analyzer' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
@@ -347,4 +348,14 @@ for _, lsp in ipairs(servers) do
     }
   }
 end
+
+nvim_lsp['texlab'].setup {
+    on_attach = on_attach,
+    flags = {
+      debounce_text_changes = 150,
+    },
+    handlers = { ['textDocument/publishDiagnostics'] = function() end }
+}
+--vim.lsp.set_log_level("DEBUG")
+--print(vim.lsp.get_log_path())
 EOF
