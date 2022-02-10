@@ -13,3 +13,7 @@ function bibfuzz {
         fzf |
         awk '{ print $1 }'
 }
+
+function bibfuzz_cp {
+    bibfuzz | tr -d '\n' | copy
+}
