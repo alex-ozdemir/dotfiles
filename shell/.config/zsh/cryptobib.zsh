@@ -16,4 +16,5 @@ function bibfuzz {
 
 function bibfuzz_cp {
     bibfuzz | tr -d '\n' | copy
+    sleep 0.1
 }
