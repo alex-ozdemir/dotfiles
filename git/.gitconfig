@@ -6,6 +6,7 @@
 	d = diff
 	a = add
 	b = branch
+	sd = diff --staged
 [user]
 	email = aozdemir@hmc.edu
 	name = Alex Ozdemir
