@@ -10,7 +10,7 @@ function bibfuzz {
         sed 's/\s\+/ /g'|
         sed 's/@\w*{\([^,]*\),/\1 :/' |
         sed 's/\(author = \)\|\(title = \)//g' |
-        fzf |
+        fzf --no-hscroll --preview 'echo {}' --preview-window='down,wrap,8' |
         awk '{ print $1 }'
 }
 
