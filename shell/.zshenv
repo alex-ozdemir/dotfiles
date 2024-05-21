@@ -11,3 +11,4 @@ export PATH="$NPM_CONFIG_PREFIX/bin:$PATH"
 export PATH="/home/aozdemir/.gem/ruby/2.6.0/bin:$PATH"
 export TEXMFHOME=$XDG_CONFIG_DIR/texmf
 export PATH="/usr/lib/ccache/bin:$PATH"
+export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
