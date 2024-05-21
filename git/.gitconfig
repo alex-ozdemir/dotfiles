@@ -6,7 +6,10 @@
 	d = diff
 	a = add
 	b = branch
-	sd = diff --staged
+	sb = git blame -w -C -C -C
+	sd = diff --word-diff -w
+	rekt = git push --force-with-lease
+	std = diff --staged
 [user]
 	email = aozdemir@hmc.edu
 	name = Alex Ozdemir
