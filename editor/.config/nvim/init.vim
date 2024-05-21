@@ -238,6 +238,14 @@ au BufRead,BufNewFile *.plf set filetype=lisp
 
 nnoremap U :syntax sync fromstart<cr>
 
+function Sfmt()
+    let line=getline('.')
+    echom line
+    let newline=system("sfmt", line)
+    call setline(".", newline)
+endfunction
+command! Sfmt call Sfmt()
+
 
 " builtin lsp
 lua << EOF
