@@ -60,6 +60,5 @@ export PYTHONPATH="$PYTHONPATH:$HOME/repos/gg/tools/pygg/:/usr/local/lib/python3
 export MYPYPATH="$MYPYPATH:$HOME/repos/gg/tools/pygg/:/usr/local/lib/python3.9/site-packages/"
 #export PYTHONPATH="$PYTHONPATH:$HOME/repos/CVC4/newpy"
 export PYTHONPATH="$PYTHONPATH:$HOME/repos/z3/build/python"
-source ~/barrett_hai_credentials.zsh
 export PATH=$PATH:$HOME/.zokrates/bin
 export ZOKRATES_HOME=$HOME/.zokrates/stdlib
