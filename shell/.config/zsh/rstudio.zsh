@@ -13,5 +13,5 @@ function rstudio {
         echo '{}' > $config
     fi
     cat $config | jq ". + {initial_working_directory:\"${dir:a:gs/\//\\\//}\"}" | sponge $config
-    rstudio-bin
+    /usr/lib/rstudio/rstudio
 }
