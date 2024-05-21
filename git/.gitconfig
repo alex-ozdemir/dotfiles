@@ -10,6 +10,7 @@
 	sd = diff --word-diff -w
 	rekt = git push --force-with-lease
 	std = diff --staged
+	rbc = rebase --continue
 [user]
 	email = aozdemir@hmc.edu
 	name = Alex Ozdemir
