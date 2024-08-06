@@ -129,7 +129,16 @@ sources = cmp.config.sources({
 -- Set up lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 lspconfig = require'lspconfig'
-lspconfig['pylsp'].setup { capabilities = capabilities }
+lspconfig['pylsp'].setup {
+    capabilities = capabilities,
+    settings = {
+        pylsp = {
+            plugins = {
+                pyflakes = { enabled = false },
+            }
+        },
+    }
+}
 lspconfig['rust_analyzer'].setup { capabilities = capabilities }
 lspconfig['texlab'].setup { capabilities = capabilities, handlers = { ['textDocument/publishDiagnostics'] = function() end } }
 
