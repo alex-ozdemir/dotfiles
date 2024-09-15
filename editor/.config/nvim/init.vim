@@ -140,7 +140,19 @@ lspconfig['pylsp'].setup {
     }
 }
 lspconfig['rust_analyzer'].setup { capabilities = capabilities }
-lspconfig['texlab'].setup { capabilities = capabilities, handlers = { ['textDocument/publishDiagnostics'] = function() end } }
+lspconfig['texlab'].setup {
+  capabilities = capabilities,
+  handlers = { ['textDocument/publishDiagnostics'] = function() end }
+}
+lspconfig.harper_ls.setup {
+  settings = {
+    ["harper-ls"] = {
+      linters = {
+        spell_check = false
+      },
+    }
+  },
+}
 
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
